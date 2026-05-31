@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>your cutie helper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fon:       #DEF7E4;
+    --korpus:    #F2CAD8;
+    --ekran:     #ffffff;
+    --tsyfry:    #F7DEF1;
+    --diyi:      #EAB5F2;
+    --dorivnyue: #ff3d8b;
+    --ochystyty: #ff3d8b;
+    --tekst:     #5e2a45;
+    --obvodka:   #5e2a45;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--fon);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40'%3E%3Cpath d='M20 8 L22 16 L30 16 L23 21 L26 30 L20 24 L14 30 L17 21 L10 16 L18 16 Z' fill='%23ff3d8b'/%3E%3C/svg%3E");
+    background-size: 65px 65px;
+    font-family: 'Baloo 2', monserrat;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .calc {
+    background: var(--korpus);
+    border-radius: 45px;
+    border: 4px solid var(--obvodka);
+    box-shadow: 9px 9px 0 var(--obvodka);
+    padding: 24px; width: 100%; max-width: 350px;
+  }
+  h1 { text-align:center; color:var(--tekst); font-size:24px; margin-bottom:16px; font-weight:800; }
+  .screen {
+    background:var(--ekran);
+    border: 3px solid var(--obvodka);
+    border-radius: 18px;
+    padding: 20px 16px; margin-bottom: 18px;
+    text-align: right; font-size: 42px; font-weight: 800;
+    color: var(--tekst); min-height: 76px; word-break: break-all; line-height: 1.1;
+  }
+  .buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; }
+  button {
+    font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 23px;
+    color: var(--tekst); background: var(--tsyfry);
+    border: 3px solid var(--obvodka);
+    border-radius: 15px;
+    padding: 17px 0; cursor: pointer;
+    box-shadow: 3px 3px 0 var(--obvodka);
+    transition: transform 0.08s, box-shadow 0.08s;
+  }
+  button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--obvodka);
+  }
+  .op    { background: var(--diyi); }
+  .equal { background: var(--dorivnyue); color:#fff; }
+  .clear { background: var(--ochystyty); color:#fff; }
+  .wide  { grid-column: span 2; }
+  .back  { background: #ff3d8b; color: #ffffff; }
+</style>
+</head>
+<body>
+  <div class="calc">
+    <h1>your cutie helper</h1>
+    <div class="screen" id="screen">0</div>
+    <div class="buttons">
+      <button class="clear wide" onclick="clearAll()">C</button>
+      <button class="op" onclick="press('(')">(</button>
+      <button class="op" onclick="press(')')">)</button>
+
+      <button onclick="press('7')">7</button>
+      <button onclick="press('8')">8</button>
+      <button onclick="press('9')">9</button>
+      <button class="op" onclick="press('/')">&divide;</button>
+
+      <button onclick="press('4')">4</button>
+      <button onclick="press('5')">5</button>
+      <button onclick="press('6')">6</button>
+      <button class="op" onclick="press('*')">&times;</button>
+
+      <button onclick="press('1')">1</button>
+      <button onclick="press('2')">2</button>
+      <button onclick="press('3')">3</button>
+      <button class="op" onclick="press('-')">&minus;</button>
+
+      <button onclick="press('0')">0</button>
+      <button onclick="press('.')">.</button>
+      <button class="op" onclick="press('%')">%</button>
+      <button class="op" onclick="press('+')">+</button>
+
+      <button class="equal wide" onclick="calculate()">=</button>
+      <button class="back" onclick="back()">&#9003;</button>
+    </div>
+  </div>
+  <script>
+    let expr = "";
+    const screen = document.getElementById("screen");
+    function press(s) { expr += s; screen.textContent = expr; }
+    function clearAll() { expr = ""; screen.textContent = "0"; }
+    function back() { expr = expr.slice(0, -1); screen.textContent = expr || "0"; }
+    function calculate() {
+      try {
+        let ready = expr.replaceAll('%', '/100');
+        let res = eval(ready);
+        screen.textContent = res;
+        expr = String(res);
+      } catch { screen.textContent = "error"; expr = ""; }
+    }
+  </script>
+</body>
+</html>
