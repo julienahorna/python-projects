@@ -107,6 +107,11 @@
     function calculate() {
       try {
         let ready = expr.replaceAll('%', '/100');
+        if (ready.includes('/0')){
+          screen.textContent = "Error";
+          expr = "";
+          return;
+        }
         let res = eval(ready);
         screen.textContent = res;
         expr = String(res);
