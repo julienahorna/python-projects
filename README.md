@@ -9,3 +9,6 @@ Uses OrderedDict to track usage order - reading an item moves it to the end.
 ## Tokenizer (Word Frequency Counter)
 A text tokenizer that splits text into words and counts how often each word appears.
 Built as a reusable function.
+## Two Sum
+Finds two numbers in a list that add up to target, return their positions.
+Uses a dictionary for last lookup of seen numbers.
