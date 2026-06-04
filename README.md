@@ -15,3 +15,6 @@ Uses a dictionary for last lookup of seen numbers.
 ## Valid Parentheses
 Checks if brackets in a string are correctly opened and closed in order.
 Uses a stack (list) - push opening brackets, pop and match on closing.
+## Reverse Linked List
+Reverses a singly linked list by flipping each node's pointer backwards.
+Uses a Node class and three pointers (prev,current, next)
