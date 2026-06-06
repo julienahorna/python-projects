@@ -1,0 +1,6 @@
+def is_anagram(word1, word2):
+    return sorted(word1.lower()) == sorted(word2.lower())
+print(is_anagram("mile", "file"))
+print(is_anagram("silent", "listen"))
+print(is_anagram("ball", "fall"))
+print(is_anagram("forreve", "revefor"))
