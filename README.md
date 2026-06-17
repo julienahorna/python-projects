@@ -21,3 +21,5 @@ Uses a Node class and three pointers (prev, current, next).
 ## Fibonacci (with Memoization)
 Computes Fibonacci numbers using recursion, optimized with memoization.
 Stores already-computed results in dictionary to avoid recalculating.
+## Binary Search
+Finds a number's position in a sorted list by repeatedly halving the search range.
